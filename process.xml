@@ -1,0 +1,81 @@
+<process name="myHelloWorld">
+
+  <trigger component="bShow" event="Select" step="12b" view="myHelloWorld"/>
+
+  <trigger component="bHide" event="Select" step="11" view="myHelloWorld"/>
+
+  <trigger component="bChange" event="Select" step="12a" view="myHelloWorld"/>
+
+  <step id="1" name="Open Application">
+
+    <operation name="open" value="xios://Documents/MyApps/MyHelloWorld/views/ui.xml"/>
+
+  </step>
+
+  <step id="10" name="Show Message">
+
+    <operation name="action" value="#myHelloWorld">
+
+      <component action="show" name="pMessage"/>
+
+    </operation>
+
+  </step>
+
+  <step id="11" name="Hide Message">
+
+    <operation name="action" value="#myHelloWorld">
+
+      <component action="hide" name="pMessage"/>
+
+    </operation>
+
+  </step>
+
+  <step goto="digit" id="digit1_mouse">
+
+    <alias name="digit" value="1"/>
+
+    <operation name="call" value="15"/>
+
+  </step>
+
+  <step id="12a" name="Change Message">
+
+    <operation name="callMethod" value="#myHelloWorld#lSpanish">
+
+      <method name="setValue">
+
+        <param type="string">{#myHelloWorld#spanish}</param>
+
+      </method>
+
+    </operation>
+
+  </step>
+
+  <step id="12b" name="Verify">
+
+ 
+
+operation name="decision" value="#view1#mails"&gt;
+
+  <when step="18" test="count(/documents/item) = '0'"/>
+
+    <operation name="decision" value="#myHelloWorld#spanish">
+
+    </operation>
+
+  </step>
+
+  <step id="13" name="Change Message">
+
+    <operation name="action" value="#myHelloWorld#pSwedish">
+
+      <component action="text" name="pMessage"/>
+
+    </operation>
+
+  </step>
+
+</process>
